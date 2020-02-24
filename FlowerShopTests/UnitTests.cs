@@ -33,7 +33,7 @@ namespace Tests
             //ACT
             //there is no need to act here;
             //ASSERT
-            Assert.That(order_sub.Price,Is.EqualTo(33));
+            Assert.That(order_sub.Price,Is.EqualTo(135));
         }
     }
 }
