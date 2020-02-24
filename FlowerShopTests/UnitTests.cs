@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using NSubstitute;
+using FlowerShop;
 
 namespace Tests
 {
@@ -10,9 +12,28 @@ namespace Tests
         }
 
         [Test]
-        public void Test1()
+        public void Order_SetDelivered()
         {
-            Assert.Pass();
+           //ARRANGE
+            var IOrder=Substitute.For<IOrderDAO>();
+            var IClient=Substitute.For<IClient>();
+            var order_sub= new Order(IOrder,IClient); 
+            //ACT
+            order_sub.Deliver();
+            //ASSERT
+            IOrder.Received().SetDelivered(order_sub);
+        }
+        [Test]
+        public void PriceOrder_Accuracy()
+        {
+            //ARRANGE
+            var IOrder=Substitute.For<IOrderDAO>();
+            var IClient=Substitute.For<IClient>();
+            var order_sub= new Order(IOrder,IClient); 
+            //ACT
+            //there is no need to act here;
+            //ASSERT
+            Assert.That(order_sub.Price,Is.EqualTo(33));
         }
     }
 }
